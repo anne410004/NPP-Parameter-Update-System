@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="bgpage.css">
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container{
+  width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,50,0.8),rgba(0,0,50,0.8)),url(bg_img.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+
+}
+.btn{
+  position: absolute;
+  top: 15px;
+  left: 45px;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  background: #1b1b1b;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: left 0.4s ease;
+}
+.btn.click{
+  left: 260px;
+}
+.btn span{
+  color: white;
+  font-size: 28px;
+  line-height: 45px;
+}
+.btn.click span:before{
+  content: '\f00d';
+}
+.sidebar{
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  left: -250px;
+  background: #1b1b1b;
+  transition: left 0.4s ease;
+}
+.sidebar.show{
+  left: 0px;
+}
+.sidebar .text{
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 65px;
+  text-align: center;
+  background: #1e1e1e;
+  letter-spacing: 1px;
+}
+nav ul{
+  background: #1b1b1b;
+  height: 100%;
+  width: 100%;
+  list-style: none;
+}
+nav ul li{
+  line-height: 60px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+nav ul li:last-child{
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+nav ul li a{
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding-left: 40px;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  border-left: 3px solid transparent;
+}
+nav ul li.active a{
+  color: cyan;
+  background: rgb(16, 16, 16);
+  border-left-color: cyan;
+}
+nav ul li a:hover{
+  background: #1e1e1e;
+}
+nav ul ul{
+  position: static;
+  display: none;
+}
+nav ul .feat-show.show{
+  display: block;
+}
+nav ul .serv-show.show1{
+  display: block;
+}
+nav ul ul li{
+  line-height: 42px;
+  border-top: none;
+}
+nav ul ul li a{
+  font-size: 17px;
+  color: #e6e6e6;
+  padding-left: 80px;
+}
+nav ul li.active ul li a{
+  color: #e6e6e6;
+  background: #1b1b1b;
+  border-left-color: transparent;
+}
+nav ul ul li a:hover{
+  color: cyan!important;
+  background: #1e1e1e!important;
+}
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+nav ul li a span{
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: transform 0.4s;
+}
+nav ul li a span.rotate{
+  transform: translateY(-50%) rotate(-180deg);
+}
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: #202020;
+  z-index: -1;
+  text-align: center;
+}
+.content .header{
+  font-size: 45px;
+  font-weight: 600;
+}
+.content p{
+  font-size: 30px;
+  font-weight: 500;
+}
+.cards-container{
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translate(-170%,130%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  align-items: right;
+  z-index: 1;
+}
+.cardbody img {
+  width: 100%; /* Adjust the width of the image to fill the container */
+  height: auto; /* Maintain the aspect ratio of the image */
+  display: block; /* Ensure the image behaves as a block element */
+}
+.cardbody p {
+  font-size: 16px;
+  color: #e6e2e2;
+  margin-top: 10px;
+}
+
+.cardbody{
+  margin: 10px;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border: 1px solid #ccc;
+  text-align: center;
+  line-height: 200px;
+}
+
+.cards-container {
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-30%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items:left right;
+  z-index: 1;
+}
+
+.cardbody {
+  margin: 10px;
+  width: 850px;
+  height: 550px;
+  background-color: white;
+  border: 1px solid #ccc;
+  text-align: center;
+  line-height: 100px;
+}
+img{
+  width:200%;
+  height: 200%;
+}
+.cardbody img{
+width:150px;
+height:150px;
+transform: translate(5%,5%);
+}
+.cardbody h4 {
+  margin-top: 0; /* Remove default margin */
+  font-size: 18px; /* Adjust font size */
+  color: #333; /* Text color */
+  transform: translate(-38%,-10%);
+}
+
+.cardbody .first-paragraph {
+  margin-bottom: 10px; /* Add some spacing between paragraphs */
+  font-size: 14px; /* Adjust font size */
+  color: #555; /* Text color */
+  transform: translate(25%,-120%);
+  width: 80%;
+}
+.cardbody .second-paragraph {
+  margin-bottom: 10px; /* Add some spacing between paragraphs */
+  font-size: 14px; /* Adjust font size */
+  color: #555; /* Text color */
+  transform: translate(5%,-90%);
+  width: 95%;
+}
+
+.first-paragraph{
+line-height:35px;
+}
+.second-paragraph{
+line-height:35px;
+}
+      </style>
+   </head>
+   <body>
+      <div class="img">
+         <div class="container">
+      <div class="btn">
+         <span class="fas fa-bars"></span>
+      </div>
+      <nav class="sidebar">
+         <div class="text">
+            Moodle
+         </div>
+         <ul>
+            <li class="active"><a href="dashboard.html">Dashboard</a></li>
+            <li>
+               <a href="#" class="feat-btn">Files
+               <span class="fas fa-caret-down first"></span>
+               </a>
+               <ul class="feat-show">
+                  <li><a href="insert.html">Insert</a></li>
+                  <li><a href="update.html">update</a></li>
+               </ul>
+            </li>
+            <li><a href="OVERVIEW.pdf">Overview</a></li>
+            <li><a href="npp_para.html">Parameter</a></li>
+            <li><a href="alarm.html">Alarm</a></li>
+            <li>
+               <a href="#" class="serv-btn">Services
+               <span class="fas fa-caret-down second"></span>
+               </a>
+               <ul class="serv-show">
+                  <li><a href="Appdesign.pdf">App Design</a></li>
+                  <li><a href="Webdesign.pdf">Web Design</a></li>
+               </ul>
+            </li>
+            <li><a href="help.html">Help!</a></li>
+            <li><a href="print.html">Print</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+         </ul>
+      </nav>
+      <div class="content">
+         <div class="header">
+            NPP Update System
+         </div>
+         <p>
+            NPCIL
+         </p>
+      </div>
+      <div class="cards-container">
+         <div class="cardbody">
+           <img src="chairman.png" alt="Image 1">
+           <h4>Chairman of NPCIL</h4>
+           <p class="first-paragraph">NPCIL, founded in 1987, is India's premier governmental entity dedicated to harnessing nuclear energy for power generation. Specializing in the design, construction, and operation of nuclear power plants, NPCIL ensures the country's energy security while adhering to stringent safety protocols and international standards.With a commitment to innovation and sustainability, NPCIL contributes significantly to India's clean energy initiatives and technological advancements in the nuclear sector, solidifying its pivotal role in shaping the nation's energy future.</p>
+           <p class="second-paragraph">NPCIL, a vital player in India's energy landscape, has consistently demonstrated its commitment to sustainable development and technological advancement in the nuclear sector. With a focus on innovation and safety, NPCIL has spearheaded the nation's nuclear power generation capabilities, ensuring a reliable and clean source of energy for the growing demands of India's economy. By adhering to stringent international standards and fostering collaborations with global nuclear organizations, NPCIL not only enhances India's energy security but also contributes to the global dialogue on safe and responsible nuclear energy utilization. Through its strategic initiatives and forward-thinking approach, NPCIL continues to play a pivotal role in shaping India's energy future, driving progress towards a more sustainable and resilient energy ecosystem.</p>
+         </div>
+     </div>
+ 
+      <script>
+         $('.btn').click(function(){
+           $(this).toggleClass("click");
+           $('.sidebar').toggleClass("show");
+         });
+           $('.feat-btn').click(function(){
+             $('nav ul .feat-show').toggleClass("show");
+             $('nav ul .first').toggleClass("rotate");
+           });
+           $('.serv-btn').click(function(){
+             $('nav ul .serv-show').toggleClass("show1");
+             $('nav ul .second').toggleClass("rotate");
+           });
+           $('nav ul li').click(function(){
+             $(this).addClass("active").siblings().removeClass("active");
+           });
+      </script>
+      </div>
+
+   </div>
+   </body>
+</html>

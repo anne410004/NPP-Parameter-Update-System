@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    <div class="profile-details">
+        <h2>User Profile</h2>
+        <p><strong>Name:</strong> <span id="full_name"></span></p>
+        <p><strong>Email:</strong> <span id="email_id"></span></p>
+        <p><strong>Phone:</strong> <span id="phone"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+        <p><strong>Gender:</strong> <span id="gender"></span></p>
+        <!-- Add more profile details here as needed -->
+    </div>
+
+    <script>
+        // Retrieve user details from local storage
+        var userData = {
+            full_name: localStorage.getItem("ls_full_name") || "N/A",
+            email_id: localStorage.getItem("ls_email_id") || "N/A",
+            phone: localStorage.getItem("ls_phone") || "N/A",
+            dob: localStorage.getItem("ls_dob") || "N/A",
+            gender: localStorage.getItem("ls_gender") || "N/A"
+        };
+        // Display user details on the profile page
+        document.getElementById("full_name").textContent = userData.full_name;
+        document.getElementById("email_id").textContent = userData.email_id;
+        document.getElementById("phone").textContent = userData.phone;
+        document.getElementById("dob").textContent = userData.dob;
+        document.getElementById("gender").textContent = userData.gender;
+    </script>
+</body>
+
+</html>

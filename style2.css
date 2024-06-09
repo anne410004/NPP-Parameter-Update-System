@@ -1,0 +1,34 @@
+body{
+    background-color:#4535ba;
+    text-align: center;
+}
+ul{
+    background-color: white;
+}
+ul li{
+    list-style: none;
+}
+table ,th,td{
+    background-color: white;
+    border:1px solid black;
+    border-collapse: collapse;
+    text-align: left;
+}
+table p{
+    text-align: center;
+    background-color: white;
+}button{
+    display:block; 
+    text-align:center;
+}
+#myform{
+    text-align: center;
+    display:inline-block;
+    color:white;
+}
+h2{
+    color:white;
+}
+h1{
+    color:white;
+}

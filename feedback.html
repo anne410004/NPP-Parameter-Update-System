@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Feedback Form</title>
+        <style>
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }  
+        .layer{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 270%;
+            background-color: rgba(0, 0, 0, 0.317)
+        }    
+        .content{
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: black; 
+            background-color: white;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="img">
+            <img src="npcilimg.jpg" alt="Your Image">
+            <div class="layer">
+                <div class="content">
+                    <form id="myForm" method="POST">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" required autocomplete="name" /><br><br>
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" required autocomplete="email" /><br><br>
+                        <label for="phone">Phone</label>
+                        <input type="text" name="phone" id="phone" required autocomplete="phone" /><br><br>
+                        <label for="rate">How do you rate your overall experience?</label><br><br>
+                        <input type="radio" name="rate" id="bad" value="bad" required /><label for="bad">Bad</label><br><br>
+                        <input type="radio" name="rate" id="average" value="average" required /><label for="average">Average</label><br><br>
+                        <input type="radio" name="rate" id="good" value="good" required /><label for="good">Good</label><br><br>
+                        <label for="improvement">What areas do you think need improvement?</label>
+                        <input type="text" id="improvement" name="improvement" required /><br><br>
+                        <input type="submit"/><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById("myForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                var jsonData = {};
+                formData.forEach(function(value, key) {
+                    jsonData[key] = value;
+                });
+                localStorage.setItem("feedbackData", JSON.stringify(jsonData));
+                alert("Feedback saved successfully");
+                this.reset();
+            });
+        </script>
+        
+    </body>
+</html>

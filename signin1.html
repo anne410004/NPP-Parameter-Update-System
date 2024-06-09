@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email & OTP Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #3c00a0;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2d0078;
+        }
+
+        .otp-section {
+            display: none;
+        }
+
+        .otp-section.show {
+            display: block;
+        }
+
+        .otp-message {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .otp-input {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .otp-input input[type="number"] {
+            width: calc(100% - 70px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .otp-input input[type="submit"] {
+            width: 60px;
+            background-color: #3c00a0;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .otp-input input[type="submit"]:hover {
+            background-color: #2d0078;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Email & OTP Verification</h1>
+        <form id="emailForm" class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="submit" value="Send OTP" id="sendOTPBtn">
+        </form>
+        <div id="otpSection" class="otp-section">
+            <p class="otp-message">An OTP has been sent to your email. Please enter it below:</p>
+            <form id="otpForm" class="form-group">
+                <div class="otp-input">
+                    <input type="number" id="otp" name="otp" placeholder="Enter OTP" required>
+                    <input type="submit" value="Verify" id="verifyOTPBtn">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Function to send OTP to the user's email
+        function sendOTP(email) {
+            // Here you can implement the logic to send the OTP to the provided email
+            // This could be done using a server-side scripting language like Node.js, PHP, etc.
+            // For demonstration purposes, let's just log the OTP to the console
+            const OTP = Math.floor(1000 + Math.random() * 9000); // Generate a random 4-digit OTP
+            console.log(`OTP sent to ${email}: ${OTP}`);
+            return OTP; // Return the generated OTP
+        }
+    
+        // Function to verify the entered OTP
+        function verifyOTP(enteredOTP, sentOTP) {
+            // Compare the entered OTP with the sent OTP
+            return enteredOTP === sentOTP;
+        }
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const sendOTPBtn = document.getElementById('sendOTPBtn');
+            const verifyOTPBtn = document.getElementById('verifyOTPBtn');
+            const emailInput = document.getElementById('email');
+            const otpInput = document.getElementById('otp');
+    
+            // Event listener for the "Send OTP" button
+            sendOTPBtn.addEventListener('click', () => {
+                const email = emailInput.value;
+                if (email) {
+                    const OTP = sendOTP(email);
+                    alert(`OTP sent to ${email}`);
+                    // You can optionally display a message to the user indicating that the OTP has been sent
+                } else {
+                    alert('Please enter a valid email');
+                }
+            });
+    
+            // Event listener for the "Verify OTP" button
+            verifyOTPBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const enteredOTP = otpInput.value;
+                const sentOTP = prompt('Please enter the OTP sent to your email:');
+                if (verifyOTP(enteredOTP, sentOTP)) {
+                    alert('OTP verification successful!');
+                    // You can redirect the user to the next page or perform any other action here
+                } else {
+                    alert('Invalid OTP. Please try again.');
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
